@@ -1,0 +1,23 @@
+/* Navbar */
+.navbar{
+    height: 4rem;
+    
+}
+
+/* card */
+.card{
+    border: none;
+    margin-bottom: 2rem;
+}
+.card-body{
+    padding: 0px;
+    margin: 0px;
+}
+.card-img-top {
+     object-fit:cover;
+      border-radius: 10px;
+      padding-left: 1rem;
+}
+.listing-link{
+    text-decoration: none;
+}
