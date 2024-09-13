@@ -1,17 +1,27 @@
 <% layout("/layouts/boilerplate") %>
 <body>
     <h4>Listing Detail</h4>
-    <ul><li><%= listing.title %></li>
-        <li><%= listing.description %></li>
-        <li><%= listing.url %></li>
-        <li><%= listing.price %></li>
-        <li><%= listing.country %></li>
-    </ul>
-    <form action="/listings/<%= listing._id%>/edit" method="get">
-        <button>Edit</button>
-    </form>
-    <br>
-    <form action="/listings/<%= listing._id%>?_method=DELETE" method="Post">
-        <button>Delete</button> 
-    </form>
+<div class="row">
+    <div class="col-5 offset-2">
+        <div class="card col-5" style="width: 20rem;">
+            <img src="<%=listing.imageurl.url%>" class="card-img-top show-img" alt="Error in Loading image">
+            <div class="card-body">
+           
+              <p class="card-text">
+                  <ul>
+                    <li><%= listing.title %></li>
+            <li><%= listing.description %></li>
+            <li><%= listing.imageurl.url %></li>
+            <li><%= listing.price %></li>
+            <li><%= listing.country %></li>
+        </ul>
+                </p>
+              <a href="/listings/<%= listing._id%>/edit" class="btn btn-primary">Edit</a><br><br>
+              <form action="/listings/<%= listing._id%>?_method=DELETE" method="Post">
+                <button class="btn btn-primary">Delete</button> 
+            </form>
+            </div>
+          </div> 
+    </div>      
+</div>
 </body>

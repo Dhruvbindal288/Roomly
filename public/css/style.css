@@ -21,3 +21,8 @@
 .listing-link{
     text-decoration: none;
 }
+
+/* showpage */
+.show-img{
+    height: 30vh;
+}
