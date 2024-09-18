@@ -47,16 +47,17 @@ app.get("/listings/new",(req,res)=>{
 });
 //Posting new list
 app.post("/listings",wrapAsync(async(req,res,next)=>{
-let{title,description,imageurl,price,country}=req.body;
-listingSchema.validate(req.body);
-let newList=new Listing({
-    title:title,
-    description:description,
-    imageurl:imageurl,
-    price:price,
-    country:country
-});
-await newList.save()
+let listing=req.body.listing;
+const newList=await new Listing(listing);
+// listingSchema.validate(req.body);
+// let newList=new Listing({
+//     title:title,
+//     description:description,
+//     imageurl:imageurl,
+//     price:price,
+//     country:country
+// });
+ await newList.save()
 res.redirect("/listings")
 }));
 
@@ -74,17 +75,18 @@ app.get("/listings/:id",wrapAsync(async (req,res)=>{
 app.get("/listings/:id/edit",wrapAsync(async(req,res)=>{
     let {id}=req.params;
     let listing=await Listing.findById(id);
-    res.render("./listings/edit.ejs",{listing})
+    res.render("./listings/edit.ejs",{listing});
 }));
 //to Put update information
 app.put("/listings/:id",wrapAsync(async(req,res)=>{
     let {id}=req.params;
-    let{title,description,imageurl,price,country}=req.body;
-    await Listing.findByIdAndUpdate(id,{title:title,
-        description:description,
-        imageurl:imageurl,
-        price:price,
-        country:country});
+    await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    //  let{title,description,imageurl,price,country}=req.body;
+    //  await Listing.findByIdAndUpdate(id,{title:title,
+    //  description:description,
+    //  imageurl:imageurl,
+    //  price:price,
+    //  country:country});
     res.redirect("/listings")
 
 }));

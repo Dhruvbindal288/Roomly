@@ -1,8 +1,13 @@
 const mongoose=require("mongoose");
-
 const listingSchema=new mongoose.Schema({
-title:String,
-description:String,
+title:{
+  type:String,
+  required: true
+},
+description:{
+  type:String,
+  required: true
+},
 imageurl: {
     filename: String,
     url: {
@@ -11,11 +16,19 @@ imageurl: {
       set: (v) => (v === "" ? "Image Not Available" : v),
     },
   },
-price:Number,
-location:String,
-country:String
-
-})
+price:{
+  type:Number,
+  required: true
+},
+location:{
+  type:String,
+  required: true
+},
+country:{
+  type:String,
+  required: true
+},
+});
 
 const Listing=new mongoose.model("Listing",listingSchema);
 
